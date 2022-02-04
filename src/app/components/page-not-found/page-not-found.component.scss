@@ -1,0 +1,23 @@
+h1 {
+  font-size: 70px;
+  display: flex;
+  justify-content: center;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: center;
+}
+
+.btn {
+  background-color: red;
+  border: 0;
+  border-radius: 20px;
+  color: white;
+  font-weight: 700;
+  width: 270px;
+  padding: 0.5fr;
+  height: 70px;
+  font-size: 20px;
+  cursor: pointer;
+}
