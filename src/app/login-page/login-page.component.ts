@@ -25,8 +25,9 @@ export class LoginPageComponent implements OnInit {
       const element = users[index];
 
       if (element.username === username) {
-        // set user and it's id to localstorage and go on to trainer page
+        localStorage.setItem('user', JSON.stringify(element));
         console.log('user exists');
+        // TODO: Navigate to Trainer Page
         return;
       }
     }
