@@ -2,10 +2,11 @@ export interface Pokemons {
   count: Number;
   next: string;
   previous: string;
-  results: PokemonResults[];
+  results: Pokemon[];
 }
 
-export interface PokemonResults {
+export interface Pokemon {
+  id?: number;
   name: string;
   url: string;
 }
