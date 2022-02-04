@@ -17,31 +17,30 @@ export class LoginPageComponent implements OnInit {
     this.httpService.FetchUsers();
   }
 
-  OnClick(input: string): void {
-    if (!input) return;
+  OnClick(username: string): void {
+    // If input is null then return
+    if (!username) return;
 
-    this.UserExist(input);
+    this.LoginUser(username);
     this.router.navigate(['/trainer']);
   }
 
-  UserExist(username: string): void {
+  LoginUser(username: string): void {
     const users: UserModel[] = this.httpService.GetUsers();
 
     for (let index = 0; index < users.length; index++) {
       const element = users[index];
 
+      // User exists, store user in localstorage and return
       if (element.username === username) {
         localStorage.setItem('user', JSON.stringify(element));
-        console.log('user exists');
-        // TODO: Navigate to Trainer Page
         return;
       }
     }
 
-    // User dont exist, add user to database and localstorage
+    // User dont exist, add new user to database and store in localstorage
     this.httpService.AddUser(username, (addedUser: UserModel) => {
       localStorage.setItem('user', JSON.stringify(addedUser));
     });
-    console.log('user dont exists post to database');
   }
 }
