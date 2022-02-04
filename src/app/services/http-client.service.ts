@@ -18,7 +18,34 @@ export class HttpClientService {
       });
   }
 
-  GetUsers(): UserModel[] {
+  public AddUser(newUsername: string): void {
+    const headers = {
+      'X-API-Key': 'SimonLove',
+      'Content-Type': 'application/json',
+    };
+
+    const newUser: UserModel = {
+      id: this.GenerateUniqueUserId(),
+      username: newUsername,
+      pokemon: [],
+    };
+
+    this.http
+      .post<UserModel>(
+        'https://assignments-api.herokuapp.com/trainers',
+        newUser,
+        { headers }
+      )
+      .subscribe((data) => {
+        console.log(data);
+      });
+  }
+
+  public GetUsers(): UserModel[] {
     return this.users;
+  }
+
+  private GenerateUniqueUserId(): number {
+    return Date.now();
   }
 }
