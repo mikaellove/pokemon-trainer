@@ -1,5 +1,7 @@
+import { Pokemon } from "./pokemonData.model";
+
 export interface UserModel {
   id: number;
   username: string;
-  pokemon: Array<string>;
+  pokemon: Pokemon[];
 }
