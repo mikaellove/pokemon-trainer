@@ -1,1 +1,3 @@
-<p>page-not-found works!</p>
+<h1>404 Page Not Found!</h1>
+<button *ngIf="UserExistInLocalStorage()" (click)="OnClickBackToTrainerPage()">Go Back To Trainer Page!</button>
+<button *ngIf="!UserExistInLocalStorage()" (click)="OnClickBackToLogin()">Go Back To Login Page</button>
