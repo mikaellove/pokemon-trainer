@@ -1,0 +1,13 @@
+<section>
+  <h4>{{ trainer?.username }}</h4>
+
+  <ul *ngIf="pokemonCollection.length > 0" class="trainer-pokemon-collection">
+    <app-pokemon-collection-item
+      *ngFor="let pokemon of pokemonCollection"
+      [pokemon]="pokemon"
+      (click)="onClickRemove($event)"
+    >
+
+    </app-pokemon-collection-item>
+  </ul>
+</section>

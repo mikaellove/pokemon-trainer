@@ -1,0 +1,33 @@
+.pokemon-collection-item-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  width: min-content;
+  padding: 10px;
+
+}
+.pokemon-collection-item-info{
+    height: min-content;
+    text-align: center;
+    /* display: flex; */
+}
+h4{
+    margin-top: 0;
+}
+
+.pokemon-collection-item-remove-btn {
+  background-color: red;
+  border: 0;
+  border-radius: 20px;
+  color: white;
+  font-weight: 700;
+  width: 100px;
+  padding: 0.5fr;
+  height: 50px;
+  cursor: pointer;
+}
+.pokemon-collection-item-remove-btn:hover{
+    background-color: rgb(251, 71, 71);
+}
