@@ -1,21 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClientService } from '../../services/http-client.service';
 import { UserModel } from '../../models/user-model';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.scss'],
 })
 export class LoginPageComponent implements OnInit {
-  constructor(private readonly httpService: HttpClientService) {}
+  constructor(
+    private readonly httpService: HttpClientService,
+    private readonly router: Router
+  ) {}
 
   ngOnInit(): void {
     this.httpService.FetchUsers();
   }
 
   OnClick(input: string): void {
-    if (input === '') return;
+    if (!input) return;
+
     this.UserExist(input);
+    this.router.navigate(['/trainer']);
   }
 
   UserExist(username: string): void {
