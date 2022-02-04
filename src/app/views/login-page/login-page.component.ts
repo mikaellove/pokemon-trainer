@@ -19,14 +19,18 @@ export class LoginPageComponent implements OnInit {
 
   OnClick(username: string): void {
     // If input is null then return
+
+    console.log(username);
     if (!username) return;
 
     this.LoginUser(username);
 
+    console.log(!localStorage.getItem('PokeData'));
     if (!localStorage.getItem('pokeData'))
       this.httpService.FetchPokemonsAddsToLocalStorage(() =>
         this.router.navigate(['/trainer'])
       );
+    else this.router.navigate(['/trainer']);
   }
 
   LoginUser(username: string): void {
