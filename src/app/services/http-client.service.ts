@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { UserModel } from '../models/user-model';
+import { Pokemons } from '../models/pokemonsModel';
 @Injectable({
   providedIn: 'root',
 })
@@ -42,6 +43,21 @@ export class HttpClientService {
       .subscribe((data) => {
         console.log(data);
         callBack(data);
+      });
+  }
+
+  public FetchPokemonsAddsToLocalStorage(): void {
+    let pokemons: Pokemons[] = [];
+
+    this.http
+      .get<Pokemons[]>('https://pokeapi.co/api/v2/pokemon?limit=1118')
+      .subscribe({
+        next: (data: Pokemons[]) => {
+          pokemons = data;
+          let json: string = JSON.stringify(pokemons);
+          localStorage.setItem('pokeData', json);
+          // callback here
+        },
       });
   }
 
