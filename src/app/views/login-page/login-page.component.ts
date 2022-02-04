@@ -22,7 +22,11 @@ export class LoginPageComponent implements OnInit {
     if (!username) return;
 
     this.LoginUser(username);
-    this.router.navigate(['/trainer']);
+
+    if (!localStorage.getItem('pokeData'))
+      this.httpService.FetchPokemonsAddsToLocalStorage(() =>
+        this.router.navigate(['/trainer'])
+      );
   }
 
   LoginUser(username: string): void {
