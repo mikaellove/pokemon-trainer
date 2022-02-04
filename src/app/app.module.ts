@@ -9,9 +9,10 @@ import { TrainerPageComponent } from './views/trainer-page/trainer-page.componen
 import { PokemonCollectionItem } from './components/pokemon-collection-item/pokemon-collection-item.component';
 import { PokemonsPageComponent } from './views/pokemon-page/pokemons-page.component';
 import { LoginPageComponent } from './views/login-page/login-page.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 @NgModule({
-  declarations: [AppComponent, TrainerPageComponent, PokemonCollectionItem, PokemonsPageComponent, LoginPageComponent],
+  declarations: [AppComponent, TrainerPageComponent, PokemonCollectionItem, PokemonsPageComponent, LoginPageComponent, PageNotFoundComponent],
 
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
