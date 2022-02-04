@@ -18,7 +18,10 @@ export class HttpClientService {
       });
   }
 
-  public AddUser(newUsername: string): void {
+  public AddUser(
+    newUsername: string,
+    callBack: (addedUser: UserModel) => void
+  ): void {
     const headers = {
       'X-API-Key': 'SimonLove',
       'Content-Type': 'application/json',
@@ -38,6 +41,7 @@ export class HttpClientService {
       )
       .subscribe((data) => {
         console.log(data);
+        callBack(data);
       });
   }
 
