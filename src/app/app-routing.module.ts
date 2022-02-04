@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { provideRoutes, RouterModule, Routes } from '@angular/router';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { LoginPageComponent } from './views/login-page/login-page.component';
 import { PokemonsPageComponent } from './views/pokemon-page/pokemons-page.component';
@@ -24,6 +25,11 @@ const routes: Routes = [
     path: 'pokemons',
     component: PokemonsPageComponent,
     canActivate: [AuthGuardService],
+  },
+  {
+    path: '**',
+    pathMatch: 'full',
+    component: PageNotFoundComponent,
   },
 ];
 
