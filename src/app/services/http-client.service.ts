@@ -46,7 +46,9 @@ export class HttpClientService {
       });
   }
 
-  public FetchPokemonsAddsToLocalStorage(): void {
+  public FetchPokemonsAddsToLocalStorage(
+    callback?: (pokeData: Pokemons[]) => void
+  ): void {
     let pokemons: Pokemons[] = [];
 
     this.http
@@ -56,7 +58,8 @@ export class HttpClientService {
           pokemons = data;
           let json: string = JSON.stringify(pokemons);
           localStorage.setItem('pokeData', json);
-          // callback here
+
+          if (callback) callback(pokemons);
         },
       });
   }
