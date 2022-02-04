@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Pokemon, Pokemons } from 'src/app/models/pokemonData.model';
-// import { Trainer } from 'src/app/models/trainer.model';
 import { UserModel } from 'src/app/models/user-model';
 import { PokemonCollectionService } from 'src/app/services/pokemonCollection.service';
-// import { TrainerService } from 'src/app/services/trainer.service';
 
 @Component({
   selector: 'app-trainer-page',
@@ -12,7 +10,6 @@ import { PokemonCollectionService } from 'src/app/services/pokemonCollection.ser
 })
 export class TrainerPageComponent implements OnInit {
   constructor(
-    // private trainerService: TrainerService,
     private pokemonCollectionService: PokemonCollectionService
   ) {}
 

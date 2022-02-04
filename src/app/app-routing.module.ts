@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { provideRoutes, RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { AuthGuardService } from './services/auth-guard.service';
 import { LoginPageComponent } from './views/login-page/login-page.component';
 import { PokemonsPageComponent } from './views/pokemon-page/pokemons-page.component';
