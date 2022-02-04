@@ -15,4 +15,12 @@ export class PokemonsPageComponent {
   get pokemons(): Pokemon[] {
     return this.allPokemonsService.everyPokemon();
   }
+
+  public nextPage(): void {
+    this.allPokemonsService.nextPage();
+  }
+
+  public previousPage(): void {
+    this.allPokemonsService.previousPage();
+  }
 }

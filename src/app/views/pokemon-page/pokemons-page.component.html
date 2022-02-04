@@ -1,5 +1,10 @@
-<div *ngIf="pokemons !== null" class="pokemons-container">
+<div>
+  <button (click)="previousPage()">Previous Page</button>
+  <button (click)="nextPage()">Next Page</button>
 
-  <app-pokemon-card *ngFor="let pokemon of pokemons" [pokemon]="pokemon">
-  </app-pokemon-card>
+
+  <div *ngIf="pokemons !== null" class="pokemons-container">
+    <app-pokemon-card *ngFor="let pokemon of pokemons" [pokemon]="pokemon">
+    </app-pokemon-card>
+  </div>
 </div>
