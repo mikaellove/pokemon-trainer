@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Pokemon } from 'src/app/models/pokemon.model';
-import { Trainer } from 'src/app/models/trainer.model';
-import { TrainerService } from 'src/app/services/trainer.service';
+import { Pokemon, Pokemons } from 'src/app/models/pokemonData.model';
+import { UserModel } from 'src/app/models/user-model';
+import { PokemonCollectionService } from 'src/app/services/pokemonCollection.service';
 
 @Component({
   selector: 'app-trainer-page',
@@ -9,18 +9,33 @@ import { TrainerService } from 'src/app/services/trainer.service';
   styleUrls: ['./trainer-page.component.css'],
 })
 export class TrainerPageComponent implements OnInit {
-  constructor(private trainerService: TrainerService) {}
-  
+  constructor(
+    private pokemonCollectionService: PokemonCollectionService
+  ) {}
+
   ngOnInit(): void {
-    this.trainerService.fetchTrainer('ash');
+    const userItem = localStorage.getItem('user');
+    const pokeData = localStorage.getItem('pokeData');
+
+    if (userItem && pokeData) {
+      const user: UserModel = JSON.parse(userItem);
+      const data: Pokemons = JSON.parse(pokeData);
+
+      for (const pokemonName of user.pokemon) {
+        const pokemonData = data.results.filter(
+          (pokemon: Pokemon) => pokemon.name === pokemonName.toString()
+        );
+        if (pokemonData.length > 0) {
+          this.pokemonCollectionService.addPokemon(pokemonData.pop());
+        }
+      }
+    }
   }
-  get trainer(): Trainer | null {
-    return this.trainerService.trainer();
-  }
+
   get pokemonCollection(): Pokemon[] {
-    return this.trainerService.pokemonCollection();
+    return this.pokemonCollectionService.pokemonCollection();
   }
   public onClickRemove(event: number): void {
-    this.trainerService.removePokemon(event);
+    this.pokemonCollectionService.removePokemon(event);
   }
 }
