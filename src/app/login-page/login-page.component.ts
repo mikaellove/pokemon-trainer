@@ -32,7 +32,10 @@ export class LoginPageComponent implements OnInit {
       }
     }
 
-    // USer dont Exist post user to database
+    // User dont exist, add user to database and localstorage
+    this.httpService.AddUser(username, (addedUser: UserModel) => {
+      localStorage.setItem('user', JSON.stringify(addedUser));
+    });
     console.log('user dont exists post to database');
   }
 }
