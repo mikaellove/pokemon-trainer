@@ -1,5 +1,9 @@
 <h1>Welcome Pokemon Trainer!</h1>
 
-    <input  class="input-field" type="text" placeholder="Enter Trainer Name" #username>
-    <button (click)="OnClick(username.value)">click</button>
+    <input (keydown.enter)="InitializeLogin(username.value)" class="input-field" type="text" placeholder="Enter Trainer Name" #username>
+    <div class="btn-div">
+        <button class="btn" type="submit" (click)="InitializeLogin(username.value)">Log in</button>
+    </div>
+
+
 
