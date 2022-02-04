@@ -1,11 +1,18 @@
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
+import { Pokemon } from 'src/app/models/pokemonData.model';
+import { AllPokemonsService } from 'src/app/services/all-pokemons.service';
 
 @Component({
-    selector: 'app-trainer-page',
-    templateUrl: './pokemons-page.component.html',
-    styleUrls: ['./pokemons-page.component.css'],
-  })
+  selector: 'app-trainer-page',
+  templateUrl: './pokemons-page.component.html',
+  styleUrls: ['./pokemons-page.component.css'],
+})
+export class PokemonsPageComponent {
+  constructor(private readonly allPokemonsService: AllPokemonsService) {
+    this.allPokemonsService.onInit();
+  }
 
-export class PokemonsPageComponent{
-
+  get pokemons(): Pokemon[] {
+    return this.allPokemonsService.everyPokemon();
+  }
 }

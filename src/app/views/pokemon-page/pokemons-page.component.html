@@ -1,3 +1,8 @@
-<h1>
-    Show all pokemons
-</h1>
+<div *ngIf="pokemons !== null">
+
+  <app-pokemon-card *ngFor="let pokemon of pokemons" [pokemon]="pokemon">
+  </app-pokemon-card>
+  <!-- <p *ngFor="let pokemon of pokemons">
+    {{ pokemon.name }}
+  </p> -->
+</div>
