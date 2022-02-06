@@ -19,7 +19,6 @@ export class AllPokemonsService {
       const data: Pokemons = JSON.parse(pokeData);
       data.results = data.results.splice(0, 32);
       this.pokeData = data;
-      console.log(this.pokeData);
     }
   }
 
@@ -36,32 +35,37 @@ export class AllPokemonsService {
 
   public nextPage(): void {
     if (this.pokeData) {
-      if (this.endIndex + this.indexInterval < this.pokeData.results.length) {
-        this.endIndex += this.indexInterval;
-      } else {
-        this.endIndex = this.pokeData.results.length;
+      if (this.endIndex !== this.pokeData.results.length) {
+        if (this.endIndex + this.indexInterval < this.pokeData.results.length) {
+          this.endIndex += this.indexInterval;
+        } else {
+          this.endIndex = this.pokeData.results.length;
+        }
+        this.onInit();
       }
-      this.onInit();
     }
   }
   public previousPage(): void {
     if (this.pokeData) {
-      if (this.startIndex - this.indexInterval * 2 <= 0) {
-        this.startIndex = 0;
-        this.endIndex = this.indexInterval;
-      } else {
-        if (this.endIndex % this.indexInterval === 0) {
-          this.startIndex -= this.indexInterval * 2;
-          this.endIndex -= this.indexInterval;
+      if (this.startIndex !== this.indexInterval) {
+        if (this.startIndex - this.indexInterval * 2 <= 0) {
+          this.startIndex = 0;
+          this.endIndex = this.indexInterval;
         } else {
-          this.startIndex =
-            this.startIndex -
-            this.indexInterval -
-            (this.endIndex % this.indexInterval);
-          this.endIndex = this.endIndex - (this.endIndex % this.indexInterval);
+          if (this.endIndex % this.indexInterval === 0) {
+            this.startIndex -= this.indexInterval * 2;
+            this.endIndex -= this.indexInterval;
+          } else {
+            this.startIndex =
+              this.startIndex -
+              this.indexInterval -
+              (this.endIndex % this.indexInterval);
+            this.endIndex =
+              this.endIndex - (this.endIndex % this.indexInterval);
+          }
         }
+        this.onInit();
       }
-      this.onInit();
     }
   }
 
