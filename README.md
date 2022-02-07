@@ -42,7 +42,7 @@ Start the server
 ## Authors
 
 Love Beling - [@mikaellove](https://github.com/mikaellove)
-_
+<br/>
 Andreas Hellström - [@Pizzarulle](https://github.com/Pizzarulle)
 
 
