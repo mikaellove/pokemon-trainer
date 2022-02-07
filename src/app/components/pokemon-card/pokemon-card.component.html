@@ -1,4 +1,7 @@
 <div class="pokemon-card-container">
   <img src="{{ pokemon?.url }}" alt="img of pokemon" width="100" />
   <h4>{{ pokemon?.name }}</h4>
+
+  <button *ngIf="!pokemon?.collected"  class="pokemon-card-collect-btn" (click)="onClickCatch()">Catch</button>
+  <button *ngIf="pokemon?.collected" class="pokemon-card-remove-btn" (click)="onClickRemove()">Remove</button>
 </div>

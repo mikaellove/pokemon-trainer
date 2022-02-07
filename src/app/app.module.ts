@@ -21,7 +21,7 @@ import { PokemonCardComponent } from './components/pokemon-card/pokemon-card.com
     PokemonsPageComponent,
     LoginPageComponent,
     PageNotFoundComponent,
-    PokemonCardComponent
+    PokemonCardComponent,
   ],
 
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],

@@ -8,10 +8,9 @@ import { PokemonCollectionService } from 'src/app/services/pokemonCollection.ser
   templateUrl: './trainer-page.component.html',
   styleUrls: ['./trainer-page.component.css'],
 })
-export class TrainerPageComponent implements OnInit {
-  constructor(
-    private pokemonCollectionService: PokemonCollectionService
-  ) {}
+export class TrainerPageComponent {
+  constructor(private pokemonCollectionService: PokemonCollectionService) {
+  }
 
   ngOnInit(): void {
     const userItem = localStorage.getItem('user');
@@ -26,7 +25,7 @@ export class TrainerPageComponent implements OnInit {
           (pokemon: Pokemon) => pokemon.name === pokemonName.toString()
         );
         if (pokemonData.length > 0) {
-          this.pokemonCollectionService.addPokemon(pokemonData.pop());
+          this.addPokemon(pokemonData.pop());
         }
       }
     }
@@ -37,5 +36,13 @@ export class TrainerPageComponent implements OnInit {
   }
   public onClickRemove(event: number): void {
     this.pokemonCollectionService.removePokemon(event);
+  }
+  //adds a pokemon to the current pokemon collection
+  private addPokemon(newPokemon: any): void {
+    const pokemon: Pokemon = {
+      ...newPokemon,
+      ...this.pokemonCollectionService.getIdImgUrl(newPokemon.url),
+    };
+    this.pokemonCollectionService.addPokemon(pokemon);
   }
 }

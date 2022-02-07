@@ -7,5 +7,35 @@
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     width: min-content;
     padding: 10px;
-    cursor: pointer;
+    /* cursor: pointer; */
 }
+
+
+.pokemon-card-remove-btn {
+    background-color: red;
+    border: 0;
+    border-radius: 20px;
+    color: white;
+    font-weight: 700;
+    width: 100px;
+    padding: 0.5fr;
+    height: 50px;
+    cursor: pointer;
+  }
+  .pokemon-card-remove-btn:hover{
+      background-color: rgb(251, 71, 71);
+  }
+  .pokemon-card-collect-btn {
+    background-color: rgb(4, 167, 4);
+    border: 0;
+    border-radius: 20px;
+    color: white;
+    font-weight: 700;
+    width: 100px;
+    padding: 0.5fr;
+    height: 50px;
+    cursor: pointer;
+  }
+  .pokemon-card-collect-btn:hover{
+    background-color: rgb(40, 187, 40);
+  }

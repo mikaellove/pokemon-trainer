@@ -1,4 +1,5 @@
 <section>
+  <a class="nav-item_link" routerLink="/pokemons" routerLinkActive="active">pokemons</a>
   <ul *ngIf="pokemonCollection.length > 0" class="trainer-pokemon-collection">
     <app-pokemon-collection-item
       *ngFor="let pokemon of pokemonCollection"

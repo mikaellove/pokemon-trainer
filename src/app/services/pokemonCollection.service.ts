@@ -1,21 +1,19 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Pokemon } from '../models/pokemonData.model';
+import { Pokemon, Pokemons } from '../models/pokemonData.model';
+import { UserModel } from '../models/user-model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PokemonCollectionService {
-  constructor(private readonly http: HttpClient) {}
-  
+
   private _pokemonCollection: Pokemon[] = [];
 
   public pokemonCollection(): Pokemon[] {
     return this._pokemonCollection;
   }
-
   //returns an object containing the pokemons img url and id
-  private getIdImgUrl(url: string): any {
+  public getIdImgUrl(url: string): any {
     const splitUrl = url.split('/');
     const id = splitUrl[splitUrl.length - 2];
     return {
@@ -24,12 +22,7 @@ export class PokemonCollectionService {
     };
   }
 
-  //adds a pokemon to the current pokemon collection
-  public addPokemon(newPokemon: any): void {
-    const pokemon: Pokemon = {
-      ...newPokemon,
-      ...this.getIdImgUrl(newPokemon.url),
-    };
+  public addPokemon(pokemon: Pokemon): void {    
     this._pokemonCollection.push(pokemon);
   }
 
@@ -40,4 +33,9 @@ export class PokemonCollectionService {
     );
     this._pokemonCollection = filteredPokemonCollection;
   }
+
+  public findPokemonById(id: any): boolean{
+    return this._pokemonCollection.filter((pokemon: Pokemon) => pokemon.id === id).length > 0
+  }
+
 }

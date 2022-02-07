@@ -1,35 +1,40 @@
 import { Injectable, OnInit } from '@angular/core';
 import { interval } from 'rxjs';
 import { Pokemon, Pokemons } from '../models/pokemonData.model';
+import { PokemonCollectionService } from './pokemonCollection.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AllPokemonsService {
+export class AllPokemonsService{
   private _pokemons: Pokemon[] = [];
 
   private pokeData: Pokemons | null = null;
   private startIndex: number = 0;
-  private indexInterval: number = 10;
+  private indexInterval: number = 50;
   private endIndex: number = this.startIndex + this.indexInterval;
 
-  constructor() {
+  constructor(
+    private readonly pokemonCollectionService: PokemonCollectionService
+  ) {
     const pokeData = localStorage.getItem('pokeData');
     if (pokeData) {
       const data: Pokemons = JSON.parse(pokeData);
-      data.results = data.results.splice(0, 32);
       this.pokeData = data;
     }
+    this.startIndex = 0;
+
   }
+  
 
   public onInit(): void {
     if (this.pokeData) {
       this._pokemons = [];
       while (this.startIndex < this.endIndex) {
         const pokemon: Pokemon = this.pokeData.results[this.startIndex];
-        this.addPokemon(pokemon);
+        this.setPokemonInfo(pokemon);
         this.startIndex++;
-      }
+      }      
     }
   }
 
@@ -68,7 +73,6 @@ export class AllPokemonsService {
       }
     }
   }
-
   public everyPokemon(): Pokemon[] {
     return this._pokemons;
   }
@@ -81,11 +85,13 @@ export class AllPokemonsService {
     };
   }
 
-  public addPokemon(newPokemon: any): void {
+  private setPokemonInfo(newPokemon: any): void {
     const pokemon: Pokemon = {
       ...newPokemon,
       ...this.getIdImgUrl(newPokemon.url),
     };
+
+    pokemon.collected = this.pokemonCollectionService.findPokemonById(pokemon.id)
     this._pokemons.push(pokemon);
   }
 }

@@ -1,10 +1,17 @@
 <div>
+  <a class="nav-item_link" routerLink="/trainer" routerLinkActive="active"
+    >Trainer</a
+  >
+
   <button (click)="previousPage()">Previous Page</button>
   <button (click)="nextPage()">Next Page</button>
 
-
   <div *ngIf="pokemons !== null" class="pokemons-container">
-    <app-pokemon-card *ngFor="let pokemon of pokemons" [pokemon]="pokemon">
+    <app-pokemon-card
+      *ngFor="let pokemon of pokemons"
+      [pokemon]="pokemon"
+      (catchClicked)="onClickCatch($event)"
+    >
     </app-pokemon-card>
   </div>
 </div>
