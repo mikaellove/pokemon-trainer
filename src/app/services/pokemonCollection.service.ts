@@ -6,7 +6,6 @@ import { UserModel } from '../models/user-model';
   providedIn: 'root',
 })
 export class PokemonCollectionService {
-
   private _pokemonCollection: Pokemon[] = [];
 
   public pokemonCollection(): Pokemon[] {
@@ -21,9 +20,9 @@ export class PokemonCollectionService {
       url: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`,
     };
   }
-
-  public addPokemon(pokemon: Pokemon): void {    
-    this._pokemonCollection.push(pokemon);
+  //adds a pokemon to the current pokemon collection
+  public addPokemon(newPokemon: Pokemon): void {
+    this._pokemonCollection.push(newPokemon);
   }
 
   //filter through the pokemonCollection and removes a pokemon if its id match

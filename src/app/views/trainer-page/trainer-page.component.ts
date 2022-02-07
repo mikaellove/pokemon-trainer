@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Pokemon, Pokemons } from 'src/app/models/pokemonData.model';
 import { UserModel } from 'src/app/models/user-model';
+import { HttpClientService } from 'src/app/services/http-client.service';
 import { PokemonCollectionService } from 'src/app/services/pokemonCollection.service';
 
 @Component({
@@ -8,9 +9,13 @@ import { PokemonCollectionService } from 'src/app/services/pokemonCollection.ser
   templateUrl: './trainer-page.component.html',
   styleUrls: ['./trainer-page.component.css'],
 })
-export class TrainerPageComponent {
-  constructor(private pokemonCollectionService: PokemonCollectionService) {
-  }
+
+export class TrainerPageComponent implements OnInit {
+  constructor(
+    private pokemonCollectionService: PokemonCollectionService,
+    private readonly http: HttpClientService
+  ) {}
+
 
   ngOnInit(): void {
     const userItem = localStorage.getItem('user');
@@ -34,8 +39,9 @@ export class TrainerPageComponent {
   get pokemonCollection(): Pokemon[] {
     return this.pokemonCollectionService.pokemonCollection();
   }
-  public onClickRemove(event: number): void {
-    this.pokemonCollectionService.removePokemon(event);
+  public onClickRemove(event: any): void {
+    this.http.DeleteFromUser(event.name);
+    this.pokemonCollectionService.removePokemon(event.id);
   }
   //adds a pokemon to the current pokemon collection
   private addPokemon(newPokemon: any): void {

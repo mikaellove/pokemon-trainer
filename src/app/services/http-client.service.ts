@@ -64,6 +64,32 @@ export class HttpClientService {
       });
   }
 
+  public DeleteFromUser(pokemon: string): void {
+    const headers = {
+      'X-API-Key': 'SimonLove',
+      'Content-Type': 'application/json',
+    };
+
+    let updatedUser = JSON.parse(localStorage.getItem('user') as string);
+
+    for (let index = 0; index < updatedUser.pokemon.length; index++) {
+      const element = updatedUser.pokemon[index];
+      if (element === pokemon) {
+        updatedUser.pokemon[index] = { name: element, deleted: true };
+      }
+    }
+
+    this.http
+      .put<UserModel>(
+        'https://assignments-api.herokuapp.com/trainers/' + updatedUser.id,
+        updatedUser,
+        { headers }
+      )
+      .subscribe((data) => {
+        localStorage.setItem('user', JSON.stringify(data));
+      });
+  }
+
   public GetUsers(): UserModel[] {
     return this.users;
   }
