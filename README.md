@@ -41,7 +41,7 @@ Start the server
 ![Screenshot](component-tree.png)
 ## Authors
 
-- [@mikaellove](https://github.com/mikaellove)
-- [@Pizzarulle](https://github.com/Pizzarulle)
+Love Beling - [@mikaellove](https://github.com/mikaellove)
+Andreas Hellström - [@Pizzarulle](https://github.com/Pizzarulle)
 
 
