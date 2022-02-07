@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Pokemon, Pokemons } from '../models/pokemonData.model';
+import { getPokeData } from '../utils/storage';
 import { TrainerCollectionService } from './trainer-collection.service';
 
 @Injectable({
@@ -16,11 +17,7 @@ export class AllPokemonsService {
   constructor(
     private readonly trainerCollectionService: TrainerCollectionService
   ) {
-    const pokeData = localStorage.getItem('pokeData');
-    if (pokeData) {
-      const data: Pokemons = JSON.parse(pokeData);
-      this.pokeData = data;
-    }
+    this.pokeData = getPokeData();
   }
   public resetService(): void {
     this.startIndex = 0;
@@ -92,7 +89,7 @@ export class AllPokemonsService {
     };
     pokemon.collected = this.trainerCollectionService.isPokemonInCollection(
       pokemon.id
-    );    
+    );
     this._pokemons.push(pokemon);
   }
 }

@@ -14,7 +14,7 @@ export class TrainerPageComponent {
     return this.trainerCollectionService.getTrainerCollection();
   }
 
-  public onClickRemove(event: any): void {
-    this.trainerCollectionService.removeFromCollection(event.id);
+  public onClickRemove(event: any): void {    
+    this.trainerCollectionService.removeFromCollection(event);
   }
 }

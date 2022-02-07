@@ -1,27 +1,26 @@
 import { Injectable } from '@angular/core';
 import { Pokemon, Pokemons } from '../models/pokemonData.model';
 import { UserModel } from '../models/user-model';
-import { getUser, setUser } from '../utils/storage';
+import { getPokeData, getUser, setUser } from '../utils/storage';
+import { HttpClientService } from './http-client.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TrainerCollectionService {
-  constructor() {
+  constructor(private httpClientService: HttpClientService) {
     this.init();
   }
   private _trainerCollection: Pokemon[] = [];
 
   private init() {
-    const pokeDataString = localStorage.getItem('pokeData');
-    const userString = localStorage.getItem('user');
+    const userObject: UserModel = getUser();
+    const pokeDataObject: Pokemons = getPokeData();
 
-    if (userString && pokeDataString) {
-      const userObject: UserModel = JSON.parse(userString);
-      const pokeDataObject: Pokemons = JSON.parse(pokeDataString);
-
+    if (userObject.pokemon && (userObject.pokemon.length > 0)) {
       const loadedPokemons: Pokemon[] = [];
-
+      console.log(userObject.pokemon);
+      
       for (const pokemon of userObject.pokemon) {
         const pokemonName = pokemon.name ? pokemon.name : pokemon.toString();
         const pokemonData = pokeDataObject.results.filter(
@@ -54,23 +53,23 @@ export class TrainerCollectionService {
     updatedUserObject.pokemon.push(newPokemon);
 
     setUser(updatedUserObject);
+    this.httpClientService.patchPokemons();
   }
 
   //filter through the pokemonCollection and removes a pokemon if its id match
-  public removeFromCollection(pokemonId: number): void {
+  public removeFromCollection(pokemon: Pokemon): void {
     const filteredPokemonCollection = this._trainerCollection.filter(
-      (pokemon) => pokemon.id !== pokemonId
+      (currentPokemon) => currentPokemon.id !== pokemon.id
     );
     this._trainerCollection = filteredPokemonCollection;
-
-    //updates the localStorage
 
     const test = getUser();
     const updatedUserObject: UserModel = { ...test };
     updatedUserObject.pokemon = this._trainerCollection.map(
-      (pokemon: any) => pokemon.name
+      (currentPokemon: any) => currentPokemon.name
     );
     setUser(updatedUserObject);
+    this.httpClientService.patchPokemons();
   }
 
   public isPokemonInCollection(id: any): boolean {

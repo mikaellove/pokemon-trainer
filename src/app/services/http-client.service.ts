@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { UserModel } from '../models/user-model';
 import { Pokemons } from '../models/pokemonData.model';
+import { getUser, setPokeData } from '../utils/storage';
 @Injectable({
   providedIn: 'root',
 })
@@ -56,32 +57,31 @@ export class HttpClientService {
       .subscribe({
         next: (data: Pokemons[]) => {
           pokemons = data;
-          let json: string = JSON.stringify(pokemons);
-          localStorage.setItem('pokeData', json);
 
+          setPokeData(pokemons);
           if (callback) callback(pokemons);
         },
       });
   }
 
-  public addToUser(pokemon:string){
+  public patchPokemons() {
     const headers = {
       'X-API-Key': 'SimonLove',
       'Content-Type': 'application/json',
     };
 
-    let updatedUser = JSON.parse(localStorage.getItem('user') as string);
-    updatedUser.pokemon.push(pokemon)
-    
+    const updatedUser: UserModel = getUser();
+    const pokemonName: any[] = updatedUser.pokemon.map((pokemon: any) =>
+      pokemon.name ? pokemon.name : pokemon
+    );
+
     this.http
-      .put<UserModel>(
+      .patch<UserModel>(
         'https://assignments-api.herokuapp.com/trainers/' + updatedUser.id,
-        updatedUser,
+        { pokemon: pokemonName },
         { headers }
       )
-      .subscribe((data) => {
-        localStorage.setItem('user', JSON.stringify(data));
-      });
+      .subscribe((data) => {});
   }
 
   public DeleteFromUser(pokemon: string): void {
@@ -90,7 +90,7 @@ export class HttpClientService {
       'Content-Type': 'application/json',
     };
 
-    let updatedUser = JSON.parse(localStorage.getItem('user') as string);
+    let updatedUser = getUser();
 
     for (let index = 0; index < updatedUser.pokemon.length; index++) {
       const element = updatedUser.pokemon[index];
