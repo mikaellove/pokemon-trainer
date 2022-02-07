@@ -11,6 +11,6 @@ export class PokemonCollectionItem {
   @Output() click = new EventEmitter();
 
   onClickRemove() {
-    this.click.emit(this.pokemon?.id);
+    this.click.emit({ id: this.pokemon?.id, name: this.pokemon?.name });
   }
 }
