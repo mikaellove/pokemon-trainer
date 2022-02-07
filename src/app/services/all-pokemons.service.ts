@@ -95,7 +95,7 @@ export class AllPokemonsService {
 
     pokemon.collected = this.pokemonCollectionService.findPokemonById(
       pokemon.id
-    );
+    );    
     this._pokemons.push(pokemon);
   }
 }

@@ -29,7 +29,7 @@ export class PokemonCollectionService {
   public removePokemon(pokemonId: number): void {
     const filteredPokemonCollection = this._pokemonCollection.filter(
       (pokemon) => pokemon.id !== pokemonId
-    );
+    );    
     this._pokemonCollection = filteredPokemonCollection;
   }
 

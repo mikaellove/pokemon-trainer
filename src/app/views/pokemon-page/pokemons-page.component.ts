@@ -32,7 +32,7 @@ export class PokemonsPageComponent implements OnInit{
     catechedPokemon.collected = true
     this.pokemonCollectionService.addPokemon(catechedPokemon);
   }
-  public onClickRemove(pokemonId: any): void{
+  public onClickRemove(pokemonId: any): void{   
     this.pokemonCollectionService.removePokemon(pokemonId)
   }
 }
