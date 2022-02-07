@@ -11,7 +11,9 @@ export const getUser = () => {
 export const setUser = (value: UserModel) => {
   localStorage.setItem('user', JSON.stringify(value));
 };
-
+export const removeUser = () => {
+  localStorage.removeItem('user');
+};
 export const getPokeData = () => {
   const pokeData = sessionStorage.getItem('pokeData');
   if (pokeData) {

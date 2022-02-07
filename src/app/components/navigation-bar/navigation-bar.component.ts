@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserModel } from 'src/app/models/user-model';
-import { getUser } from 'src/app/utils/storage';
+import { getUser, removeUser } from 'src/app/utils/storage';
 
 @Component({
   selector: 'app-navigation-bar',
@@ -8,7 +9,7 @@ import { getUser } from 'src/app/utils/storage';
   styleUrls: ['./navigation-bar.component.scss'],
 })
 export class NavigationBarComponent implements OnInit {
-  constructor() {}
+  constructor(private readonly router: Router) {}
 
   ngOnInit(): void {}
 
@@ -19,5 +20,10 @@ export class NavigationBarComponent implements OnInit {
       return user.username;
     }
     return null;
+  }
+
+  public logout(): void{
+    removeUser();
+    this.router.navigate(["/"])
   }
 }
