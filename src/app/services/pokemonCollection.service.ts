@@ -7,7 +7,7 @@ import { Pokemon } from '../models/pokemonData.model';
 })
 export class PokemonCollectionService {
   constructor(private readonly http: HttpClient) {}
-  
+
   private _pokemonCollection: Pokemon[] = [];
 
   public pokemonCollection(): Pokemon[] {
@@ -30,6 +30,8 @@ export class PokemonCollectionService {
       ...newPokemon,
       ...this.getIdImgUrl(newPokemon.url),
     };
+
+    // check if pokemon is deleted then dont push
     this._pokemonCollection.push(pokemon);
   }
 
