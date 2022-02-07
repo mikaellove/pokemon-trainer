@@ -8,9 +8,9 @@ import { Pokemon } from 'src/app/models/pokemonData.model';
 })
 export class PokemonCollectionItem {
   @Input() pokemon: Pokemon | undefined;
-  @Output() click = new EventEmitter();
+  @Output() removeClick = new EventEmitter();
 
-  onClickRemove() {
-    this.click.emit({ id: this.pokemon?.id, name: this.pokemon?.name });
+  onClickRemove() {  
+    this.removeClick.emit({ id: this.pokemon?.id, name: this.pokemon?.name });
   }
 }

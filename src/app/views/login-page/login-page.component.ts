@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class LoginPageComponent implements OnInit {
   constructor(
     private readonly httpService: HttpClientService,
-    private readonly router: Router
+    private readonly router: Router,
   ) {}
 
   ngOnInit(): void {

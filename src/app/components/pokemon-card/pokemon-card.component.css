@@ -22,9 +22,7 @@
     height: 50px;
     cursor: pointer;
   }
-  .pokemon-card-remove-btn:hover{
-      background-color: rgb(251, 71, 71);
-  }
+
   .pokemon-card-collect-btn {
     background-color: rgb(4, 167, 4);
     border: 0;

@@ -64,6 +64,26 @@ export class HttpClientService {
       });
   }
 
+  public addToUser(pokemon:string){
+    const headers = {
+      'X-API-Key': 'SimonLove',
+      'Content-Type': 'application/json',
+    };
+
+    let updatedUser = JSON.parse(localStorage.getItem('user') as string);
+    updatedUser.pokemon.push(pokemon)
+    
+    this.http
+      .put<UserModel>(
+        'https://assignments-api.herokuapp.com/trainers/' + updatedUser.id,
+        updatedUser,
+        { headers }
+      )
+      .subscribe((data) => {
+        localStorage.setItem('user', JSON.stringify(data));
+      });
+  }
+
   public DeleteFromUser(pokemon: string): void {
     const headers = {
       'X-API-Key': 'SimonLove',

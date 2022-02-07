@@ -1,8 +1,6 @@
-import { Injectable, OnInit } from '@angular/core';
-import { interval } from 'rxjs';
+import { Injectable } from '@angular/core';
 import { Pokemon, Pokemons } from '../models/pokemonData.model';
-import { UserModel } from '../models/user-model';
-import { PokemonCollectionService } from './pokemonCollection.service';
+import { TrainerCollectionService } from './trainer-collection.service';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +14,7 @@ export class AllPokemonsService {
   private endIndex: number = this.startIndex + this.indexInterval;
 
   constructor(
-    private readonly pokemonCollectionService: PokemonCollectionService
+    private readonly trainerCollectionService: TrainerCollectionService
   ) {
     const pokeData = localStorage.getItem('pokeData');
     if (pokeData) {
@@ -92,8 +90,7 @@ export class AllPokemonsService {
       ...newPokemon,
       ...this.getIdImgUrl(newPokemon.url),
     };
-
-    pokemon.collected = this.pokemonCollectionService.findPokemonById(
+    pokemon.collected = this.trainerCollectionService.isPokemonInCollection(
       pokemon.id
     );    
     this._pokemons.push(pokemon);

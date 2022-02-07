@@ -4,7 +4,7 @@
     <app-pokemon-collection-item
       *ngFor="let pokemon of pokemonCollection"
       [pokemon]="pokemon"
-      (click)="onClickRemove($event)"
+      (removeClick)="onClickRemove($event)"
     >
     </app-pokemon-collection-item>
   </ul>

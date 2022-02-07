@@ -3,5 +3,5 @@
   <h4>{{ pokemon?.name }}</h4>
 
   <button *ngIf="!pokemon?.collected"  class="pokemon-card-collect-btn" (click)="onClickCatch()">Catch</button>
-  <button *ngIf="pokemon?.collected" class="pokemon-card-remove-btn" (click)="onClickRemove()">Remove</button>
+  <button *ngIf="pokemon?.collected" class="pokemon-card-remove-btn">Collected</button>
 </div>
