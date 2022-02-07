@@ -1,10 +1,10 @@
 <div class="topnav">
     <a *ngIf="username === null" routerLinkActive="active" routerLink="/login">Login Page</a>
 
-    <div *ngIf="username !== null">
-      <a  routerLinkActive="active" routerLink="/trainer" >Trainer Page</a>
+    <div *ngIf="username !== null" class="navbar-link-container">
       <a  routerLinkActive="active" routerLink="/pokemons" >Pokémon Catalogue Page</a>
-      <button (click)="logout()">Logout</button>
+      <a  routerLinkActive="active" routerLink="/trainer" >Trainer Page</a>
+      <button (click)="logout()" class="navbar-logout-btn">Logout</button>
     </div>
  
   </div>
