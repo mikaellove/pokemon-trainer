@@ -1,5 +1,5 @@
 <div class="topnav">
-    <a routerLinkActive="active" routerLink="/login">Login Page</a>
-    <a routerLinkActive="active" routerLink="/trainer" >Trainer Page</a>
-    <a routerLinkActive="active" routerLink="/pokemons" >Pokémon Catalogue Page</a>
+    <a *ngIf="username === null" routerLinkActive="active" routerLink="/login">Login Page</a>
+    <a *ngIf="username !== null" routerLinkActive="active" routerLink="/trainer" >Trainer Page</a>
+    <a *ngIf="username !== null" routerLinkActive="active" routerLink="/pokemons" >Pokémon Catalogue Page</a>
   </div>
