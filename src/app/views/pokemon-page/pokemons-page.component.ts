@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Pokemon } from 'src/app/models/pokemonData.model';
 import { AllPokemonsService } from 'src/app/services/all-pokemons.service';
 import { PokemonCollectionService } from 'src/app/services/pokemonCollection.service';
@@ -8,12 +8,14 @@ import { PokemonCollectionService } from 'src/app/services/pokemonCollection.ser
   templateUrl: './pokemons-page.component.html',
   styleUrls: ['./pokemons-page.component.css'],
 })
-export class PokemonsPageComponent {
+export class PokemonsPageComponent implements OnInit{
   constructor(private readonly allPokemonsService: AllPokemonsService,
     private readonly pokemonCollectionService: PokemonCollectionService) {
+  }
+  ngOnInit(): void {
+    this.allPokemonsService.resetService()
     this.allPokemonsService.onInit();
   }
-
   get pokemons(): Pokemon[] {
     return this.allPokemonsService.everyPokemon();
   }

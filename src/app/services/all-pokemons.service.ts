@@ -1,12 +1,13 @@
 import { Injectable, OnInit } from '@angular/core';
 import { interval } from 'rxjs';
 import { Pokemon, Pokemons } from '../models/pokemonData.model';
+import { UserModel } from '../models/user-model';
 import { PokemonCollectionService } from './pokemonCollection.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AllPokemonsService{
+export class AllPokemonsService {
   private _pokemons: Pokemon[] = [];
 
   private pokeData: Pokemons | null = null;
@@ -22,19 +23,20 @@ export class AllPokemonsService{
       const data: Pokemons = JSON.parse(pokeData);
       this.pokeData = data;
     }
-    this.startIndex = 0;
-
   }
-  
+  public resetService(): void {
+    this.startIndex = 0;
+    this.endIndex = this.startIndex + this.indexInterval;
+  }
 
   public onInit(): void {
-    if (this.pokeData) {
+    if (this.pokeData !== null) {
       this._pokemons = [];
       while (this.startIndex < this.endIndex) {
         const pokemon: Pokemon = this.pokeData.results[this.startIndex];
         this.setPokemonInfo(pokemon);
         this.startIndex++;
-      }      
+      }
     }
   }
 
@@ -91,7 +93,9 @@ export class AllPokemonsService{
       ...this.getIdImgUrl(newPokemon.url),
     };
 
-    pokemon.collected = this.pokemonCollectionService.findPokemonById(pokemon.id)
+    pokemon.collected = this.pokemonCollectionService.findPokemonById(
+      pokemon.id
+    );
     this._pokemons.push(pokemon);
   }
 }
