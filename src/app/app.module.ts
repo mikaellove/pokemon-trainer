@@ -12,6 +12,7 @@ import { PokemonsPageComponent } from './views/pokemon-page/pokemons-page.compon
 import { LoginPageComponent } from './views/login-page/login-page.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { PokemonCardComponent } from './components/pokemon-card/pokemon-card.component';
+import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { PokemonCardComponent } from './components/pokemon-card/pokemon-card.com
     LoginPageComponent,
     PageNotFoundComponent,
     PokemonCardComponent,
+    NavigationBarComponent,
   ],
 
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
