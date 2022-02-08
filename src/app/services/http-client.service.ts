@@ -74,6 +74,7 @@ export class HttpClientService {
       });
   }
 
+  // Fetches pokemons from the database with an optional callback that invokes with the pokemon data.
   public FetchPokemonsAddsToLocalStorage(
     callback?: (pokeData: Pokemons[]) => void
   ): void {
