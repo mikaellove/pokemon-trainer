@@ -2,12 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClientService } from '../../services/http-client.service';
 import { UserModel } from '../../models/user-model';
 import { Router } from '@angular/router';
-import {
-  getPokeData,
-  setUser,
-  setIsLoggedIn,
-  getUser,
-} from 'src/app/utils/storage';
+import { getPokeData, setUser, getUser } from 'src/app/utils/storage';
 import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-login-page',
@@ -39,7 +34,7 @@ export class LoginPageComponent implements OnInit {
   }
 
   LoginUser(username: string): void {
-    //if (!getUser()) setIsLoggedIn(false);
+    //if (!getUser()) this.httpService.SetIsLoggedIn(false);
     const users: UserModel[] = this.httpService.GetUsers();
 
     for (let index = 0; index < users.length; index++) {
@@ -50,7 +45,7 @@ export class LoginPageComponent implements OnInit {
 
       if (element.username === username) {
         setUser(element);
-        setIsLoggedIn(true);
+        this.httpService.SetIsLoggedIn = true;
         // localStorage.setItem('user', JSON.stringify(element));
         return;
       }
@@ -62,6 +57,6 @@ export class LoginPageComponent implements OnInit {
       // localStorage.setItem('user', JSON.stringify(addedUser));
     });
 
-    setIsLoggedIn(true);
+    this.httpService.SetIsLoggedIn = true;
   }
 }

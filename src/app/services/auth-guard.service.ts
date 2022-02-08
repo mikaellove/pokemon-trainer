@@ -7,20 +7,23 @@ import {
   UrlTree,
 } from '@angular/router';
 import { Observable, of, pipe } from 'rxjs';
-import { isLoggedIn } from '../utils/storage';
+import { HttpClientService } from './http-client.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuardService implements CanActivate {
-  constructor(private readonly router: Router) {}
+  constructor(
+    private readonly router: Router,
+    private readonly httpService: HttpClientService
+  ) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean> {
-    console.log(isLoggedIn);
-    if (isLoggedIn) {
+    console.log(this.httpService.IsLoggedIn);
+    if (this.httpService.IsLoggedIn) {
       return of(true);
     } else {
       this.router.navigate(['/login']);

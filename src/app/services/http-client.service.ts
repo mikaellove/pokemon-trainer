@@ -10,6 +10,22 @@ export class HttpClientService {
   constructor(private readonly http: HttpClient) {}
   private users: UserModel[] = [];
 
+  private isLoggedIn: boolean = false;
+
+  get IsLoggedIn() {
+    if (getUser()) {
+      this.isLoggedIn = true;
+      return this.isLoggedIn;
+    } else {
+      this.isLoggedIn = false;
+      return this.isLoggedIn;
+    }
+  }
+
+  set SetIsLoggedIn(value: boolean) {
+    this.isLoggedIn = value;
+  }
+
   public FetchUsers(): void {
     this.http
       .get<UserModel[]>('https://assignments-api.herokuapp.com/trainers')
