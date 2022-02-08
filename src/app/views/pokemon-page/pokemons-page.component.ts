@@ -11,12 +11,12 @@ import { TrainerCollectionService } from 'src/app/services/trainer-collection.se
 export class PokemonsPageComponent implements OnInit {
   constructor(
     private readonly allPokemonsService: AllPokemonsService,
-    private trainerCollectionService: TrainerCollectionService
+    private readonly trainerCollectionService: TrainerCollectionService
   ) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {    
+    this.trainerCollectionService.resetCollection();
     this.allPokemonsService.resetService();
-    this.allPokemonsService.onInit();
   }
   get pokemons(): Pokemon[] {
     return this.allPokemonsService.everyPokemon();
