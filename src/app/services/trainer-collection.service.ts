@@ -9,14 +9,21 @@ import { HttpClientService } from './http-client.service';
 })
 export class TrainerCollectionService {
   constructor(private httpClientService: HttpClientService) {
-    this.resetCollection()
+    this.resetCollection();
   }
   private _trainerCollection: Pokemon[] = [];
 
+  /**
+   * Removes any previous items in _trainerCollection
+   */
   public resetCollection(): void {
     this._trainerCollection = [];
-    this.init()
+    this.init();
   }
+
+  /**
+   * Uses localStorage and sessionStorage to retrive the catched pokemons data and then sets _trainerCollection
+   */
   public init() {
     const userObject: UserModel = getUser();
     const pokeDataObject: Pokemons = getPokeData();
@@ -38,16 +45,27 @@ export class TrainerCollectionService {
       this.setTrainerCollecton(loadedPokemons);
     }
   }
-
+  /**
+   * Sets _trainerCollection from array
+   * @param pokemons - Array of {@link Pokemon}
+   */
   public setTrainerCollecton(pokemons: Pokemon[]): void {
     this._trainerCollection = pokemons;
   }
 
+  /**
+   * 
+   * Returns array of the catched pokemons
+   * @returns - Array of {@link Pokemon}
+   */
   public getTrainerCollection(): Pokemon[] {
     return this._trainerCollection;
   }
 
-  //adds a pokemon to the current pokemon collection
+  /**
+   * Adds a new {@link Pokemon} to the trainer collection
+   * @param newPokemon - {@link Pokemon}
+   */
   public addToCollection(newPokemon: Pokemon): void {
     this._trainerCollection.push(newPokemon);
 
@@ -59,7 +77,11 @@ export class TrainerCollectionService {
     this.httpClientService.patchPokemons();
   }
 
-  //filter through the pokemonCollection and removes a pokemon if its id match
+  
+  /**
+   * Filter through the _trainerCollection and removes a pokemon if its id match
+   * @param pokemon - {@link Pokemon}
+   */
   public removeFromCollection(pokemon: Pokemon): void {
     const filteredPokemonCollection = this._trainerCollection.filter(
       (currentPokemon) => currentPokemon.id !== pokemon.id
@@ -75,6 +97,13 @@ export class TrainerCollectionService {
     this.httpClientService.patchPokemons();
   }
 
+
+  /**
+   * 
+   * Check if _trainerCollection contains a pokemon
+   * @param id - {@link Pokemon.id}
+   * @returns true/false
+   */
   public isPokemonInCollection(id: any): boolean {
     return (
       this._trainerCollection.filter((pokemon: Pokemon) => pokemon.id === id)

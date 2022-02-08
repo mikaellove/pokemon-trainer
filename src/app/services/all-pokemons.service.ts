@@ -20,12 +20,18 @@ export class AllPokemonsService {
     this.pokeData = getPokeData();
   }
 
+  /**
+   * Resets startIndex and endIndex and cals {@link onInit}
+   */
   public resetService(): void {
     this.startIndex = 0;
     this.endIndex = this.startIndex + this.indexInterval;
     this.onInit()
   }
 
+  /**
+   * Populates the _pokemons with specific pokemons depending on the current startIndex and endIndex
+   */
   private onInit(): void {
     if (this.pokeData !== null) {
       this._pokemons = [];
@@ -37,6 +43,9 @@ export class AllPokemonsService {
     }
   }
 
+  /**
+   * Sets the next 50 pokemons or less
+   */
   public nextPage(): void {
     if (this.pokeData) {
       if (this.endIndex !== this.pokeData.results.length) {
@@ -49,6 +58,9 @@ export class AllPokemonsService {
       }
     }
   }
+  /**
+   * Sets the privous 50 pokemons
+   */
   public previousPage(): void {
     if (this.pokeData) {
       if (this.startIndex !== this.indexInterval) {
@@ -72,9 +84,19 @@ export class AllPokemonsService {
       }
     }
   }
+
+  /**
+   * Returns an array containing the available pokemons
+   * @returns array of {@link Pokemon}
+   */
   public everyPokemon(): Pokemon[] {
     return this._pokemons;
   }
+  /**
+   * Uses string to extract the pokemons id and its img url
+   * @param url - String
+   * @returns object containing the id and img url
+   */
   private getIdImgUrl(url: string): any {
     const splitUrl = url.split('/');
     const id = splitUrl[splitUrl.length - 2];
@@ -83,7 +105,10 @@ export class AllPokemonsService {
       url: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`,
     };
   }
-
+/**
+ * Creates a new {@link Pokemon}-object with id, name, img url, and collected. Adds it to _pokemons.
+ * @param newPokemon - object containing the pokemon name and its data url
+ */
   private setPokemonInfo(newPokemon: any): void {
     const pokemon: Pokemon = {
       ...newPokemon,
@@ -95,9 +120,18 @@ export class AllPokemonsService {
     this._pokemons.push(pokemon);
   }
 
+  /**
+   * Checks if the first 50 pokemons are showing or not
+   * @returns true/false
+   */
   public isOnFirstPage(): boolean{
     return this.startIndex === this.indexInterval
   }
+  
+  /**
+   * Checks if the last 50 pokemons are showing or not
+   * @returns true/false
+   */
   public isOnLastPage(): boolean{
     return this.endIndex === this.pokeData?.results.length
   }
