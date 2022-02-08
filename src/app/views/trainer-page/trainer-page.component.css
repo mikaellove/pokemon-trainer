@@ -1,4 +1,5 @@
 .trainer-pokemon-collection{
+    padding-top: 30px;
     display: flex;
     flex-direction: row;
     gap: 10px;
