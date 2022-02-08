@@ -7,20 +7,20 @@
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     width: min-content;
     padding: 10px;
+    background-color: white;
     /* cursor: pointer; */
 }
 
 
 .pokemon-card-remove-btn {
-    background-color: red;
+    background-color: blue;
     border: 0;
     border-radius: 20px;
     color: white;
     font-weight: 700;
     width: 100px;
     padding: 0.5fr;
-    height: 50px;
-    cursor: pointer;
+    height: 30px;
   }
 
   .pokemon-card-collect-btn {
@@ -31,7 +31,7 @@
     font-weight: 700;
     width: 100px;
     padding: 0.5fr;
-    height: 50px;
+    height: 30px;
     cursor: pointer;
   }
   .pokemon-card-collect-btn:hover{

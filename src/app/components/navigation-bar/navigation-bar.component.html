@@ -4,7 +4,7 @@
     <div *ngIf="username !== null" class="navbar-link-container">
       <a  routerLinkActive="active" routerLink="/pokemons" >Pokémon Catalogue Page</a>
       <a  routerLinkActive="active" routerLink="/trainer" >Trainer Page</a>
-      <button (click)="logout()" class="navbar-logout-btn">Logout</button>
     </div>
- 
+
+    <button *ngIf="username !== null" (click)="logout()" class="navbar-logout-btn">Logout</button>
   </div>

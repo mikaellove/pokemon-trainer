@@ -10,7 +10,6 @@
 .pokemon-collection-item-info{
     height: min-content;
     text-align: center;
-    /* display: flex; */
 }
 h4{
     margin-top: 0;
@@ -24,7 +23,7 @@ h4{
   font-weight: 700;
   width: 100px;
   padding: 0.5fr;
-  height: 50px;
+  height: 30px;
   cursor: pointer;
 }
 .pokemon-collection-item-remove-btn:hover{
