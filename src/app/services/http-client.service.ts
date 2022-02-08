@@ -10,6 +10,8 @@ export class HttpClientService {
   constructor(private readonly http: HttpClient) {}
   private users: UserModel[] = [];
 
+
+
   public FetchUsers(): void {
     this.http
       .get<UserModel[]>('https://assignments-api.herokuapp.com/trainers')

@@ -20,6 +20,6 @@ export const getPokeData = () => {
     return JSON.parse(pokeData);
   }
 };
-export const setPokeData = (value: Pokemons[]) => {
+export const setPokeData = (value: Pokemons[]) => {  
   sessionStorage.setItem('pokeData', JSON.stringify(value));
 };
