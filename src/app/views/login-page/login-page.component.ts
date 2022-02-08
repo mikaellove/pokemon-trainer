@@ -18,7 +18,9 @@ export class LoginPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.httpService.FetchUsers();
+    if(getUser()){
+      this.router.navigateByUrl("/pokemons")
+    }
   }
 
   public onClickLogin(username: string): void {
