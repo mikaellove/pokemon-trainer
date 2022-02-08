@@ -7,6 +7,7 @@ import {
   UrlTree,
 } from '@angular/router';
 import { Observable, of, pipe } from 'rxjs';
+import { isLoggedIn } from '../utils/storage';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +19,8 @@ export class AuthGuardService implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean> {
-    if (localStorage.getItem('user')) {
+    console.log(isLoggedIn);
+    if (isLoggedIn) {
       return of(true);
     } else {
       this.router.navigate(['/login']);

@@ -1,6 +1,13 @@
 import { Pokemons } from '../models/pokemonData.model';
 import { UserModel } from '../models/user-model';
 
+export let isLoggedIn: boolean = false;
+
+export const setIsLoggedIn = (value: boolean) => {
+  console.log(value);
+  isLoggedIn = value;
+};
+
 export const getUser = () => {
   const user = localStorage.getItem('user');
   if (user) {
@@ -16,6 +23,8 @@ export const removeUser = () => {
 };
 export const getPokeData = () => {
   const pokeData = sessionStorage.getItem('pokeData');
+  console.log(pokeData);
+
   if (pokeData) {
     return JSON.parse(pokeData);
   }

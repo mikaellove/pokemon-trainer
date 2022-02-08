@@ -2,7 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClientService } from '../../services/http-client.service';
 import { UserModel } from '../../models/user-model';
 import { Router } from '@angular/router';
-import { getPokeData, setUser } from 'src/app/utils/storage';
+import {
+  getPokeData,
+  setUser,
+  setIsLoggedIn,
+  getUser,
+} from 'src/app/utils/storage';
 import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-login-page',
@@ -20,7 +25,6 @@ export class LoginPageComponent implements OnInit {
     this.httpService.FetchUsers();
   }
 
-
   InitializeLogin(username: string): void {
     // If input is null then return
     if (!username) return;
@@ -35,23 +39,29 @@ export class LoginPageComponent implements OnInit {
   }
 
   LoginUser(username: string): void {
+    //if (!getUser()) setIsLoggedIn(false);
     const users: UserModel[] = this.httpService.GetUsers();
 
     for (let index = 0; index < users.length; index++) {
       const element = users[index];
 
       // User exists, store user in localstorage and return
+      console.log(element.username + '    ' + username);
+
       if (element.username === username) {
         setUser(element);
+        setIsLoggedIn(true);
         // localStorage.setItem('user', JSON.stringify(element));
         return;
       }
     }
-
+    console.log('adds user to data base');
     // User dont exist, add new user to database and store in localstorage
     this.httpService.AddUser(username, (addedUser: UserModel) => {
       setUser(addedUser);
       // localStorage.setItem('user', JSON.stringify(addedUser));
     });
+
+    setIsLoggedIn(true);
   }
 }
