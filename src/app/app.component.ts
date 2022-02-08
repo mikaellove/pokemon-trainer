@@ -10,6 +10,6 @@ export class AppComponent implements OnInit {
   constructor(private readonly http: HttpClientService) {}
 
   ngOnInit(): void {
-    this.http.FetchPokemonsAddsToLocalStorage();
+    this.http.FetchPokemonsAddsToSessionStorage();
   }
 }

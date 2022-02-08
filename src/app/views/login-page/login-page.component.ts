@@ -23,26 +23,26 @@ export class LoginPageComponent implements OnInit {
   InitializeLogin(username: string): void {
     // If input is null then return
     if (!username) return;
-    console.log(username);
+
     this.LoginUser(username);
 
+    // If the session storage somehow has been cleared since the app started, fetches pokemons again and then navigates to pokemon page.
+    // If session storage hasn't been cleared immediately navigates to pokemon page.
     if (!getPokeData)
-      this.httpService.FetchPokemonsAddsToLocalStorage(() =>
+      this.httpService.FetchPokemonsAddsToSessionStorage(() =>
         this.router.navigate(['/pokemons'])
       );
     else this.router.navigate(['/pokemons']);
   }
 
+  // Logs in a user, checks wether user exists or not.
   LoginUser(username: string): void {
-    //if (!getUser()) this.httpService.SetIsLoggedIn(false);
     const users: UserModel[] = this.httpService.GetUsers();
 
     for (let index = 0; index < users.length; index++) {
       const element = users[index];
 
       // User exists, store user in localstorage and return
-      console.log(element.username + '    ' + username);
-
       if (element.username === username) {
         setUser(element);
         this.httpService.SetIsLoggedIn = true;
@@ -50,11 +50,9 @@ export class LoginPageComponent implements OnInit {
         return;
       }
     }
-    console.log('adds user to data base');
     // User dont exist, add new user to database and store in localstorage
     this.httpService.AddUser(username, (addedUser: UserModel) => {
       setUser(addedUser);
-      // localStorage.setItem('user', JSON.stringify(addedUser));
     });
 
     this.httpService.SetIsLoggedIn = true;

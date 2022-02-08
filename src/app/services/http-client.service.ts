@@ -26,6 +26,7 @@ export class HttpClientService {
     this.isLoggedIn = value;
   }
 
+  // Fetches existing users from the api
   public FetchUsers(): void {
     this.http
       .get<UserModel[]>('https://assignments-api.herokuapp.com/trainers')
@@ -36,6 +37,8 @@ export class HttpClientService {
       });
   }
 
+  // Creates/Adds user to the database.
+  // Invokes a callback with the new users data.
   public AddUser(
     newUsername: string,
     callBack: (addedUser: UserModel) => void
@@ -58,12 +61,13 @@ export class HttpClientService {
         { headers }
       )
       .subscribe((data) => {
-        console.log(data);
         callBack(data);
       });
   }
 
-  public FetchPokemonsAddsToLocalStorage(
+  // Fetches pokemons and adds it to the session storage.
+  // Invokes a callback with the fetches pokemons.
+  public FetchPokemonsAddsToSessionStorage(
     callback?: (pokeData: Pokemons[]) => void
   ): void {
     let pokemons: Pokemons[] = [];
