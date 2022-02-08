@@ -1,39 +1,30 @@
-.pokemon-card-container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 10px;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    width: min-content;
-    padding: 10px;
-    /* cursor: pointer; */
+.pokemon-card-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  width: min-content;
+  padding: 10px;
+  background-color: white;
 }
-
-
-.pokemon-card-remove-btn {
-    background-color: red;
-    border: 0;
-    border-radius: 20px;
-    color: white;
-    font-weight: 700;
-    width: 100px;
-    padding: 0.5fr;
-    height: 50px;
-    cursor: pointer;
-  }
-
-  .pokemon-card-collect-btn {
-    background-color: rgb(4, 167, 4);
-    border: 0;
-    border-radius: 20px;
-    color: white;
-    font-weight: 700;
-    width: 100px;
-    padding: 0.5fr;
-    height: 50px;
-    cursor: pointer;
-  }
-  .pokemon-card-collect-btn:hover{
-    background-color: rgb(40, 187, 40);
-  }
+h4{
+  margin-top: 0;
+  text-transform: capitalize;
+}
+.pokemon-card-collect-btn {
+  background-color: rgb(4, 167, 4);
+  border: 2px solid rgb(4, 167, 4);
+  color: white;
+  border-radius: 20px;
+  font-weight: 700;
+  width: 100px;
+  padding: 0.5fr;
+  height: 30px;
+  cursor: pointer;
+}
+.pokemon-card-collect-btn:hover {
+  background-color: white;
+  color: rgb(4, 167, 4);
+}

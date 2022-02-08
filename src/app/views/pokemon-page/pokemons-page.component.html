@@ -1,7 +1,10 @@
 <div>
-
-  <button (click)="previousPage()">Previous Page</button>
-  <button (click)="nextPage()">Next Page</button>
+  <div class="pokemon-page-btn-container">
+    <button class="pokemon-page-btn" [disabled]="isOnFirstPage" (click)="previousPage()">
+      Previous Page
+    </button>
+    <button class="pokemon-page-btn" [disabled]="isOnLastPage" (click)="nextPage()">Next Page</button>
+  </div>
 
   <div *ngIf="pokemons !== null" class="pokemons-container">
     <app-pokemon-card
@@ -10,5 +13,12 @@
       (catchClicked)="onClickCatch($event)"
     >
     </app-pokemon-card>
+  </div>
+
+  <div class="pokemon-page-btn-container">
+    <button class="pokemon-page-btn" [disabled]="isOnFirstPage" (click)="previousPage()">
+      Previous Page
+    </button>
+    <button class="pokemon-page-btn" [disabled]="isOnLastPage" (click)="nextPage()">Next Page</button>
   </div>
 </div>

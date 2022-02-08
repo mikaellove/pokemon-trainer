@@ -5,3 +5,13 @@
     margin: auto;
     width: 70vw;
 }
+.pokemon-page-btn-container{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    gap: 10px;
+}
+.pokemon-page-btn{
+    cursor: pointer;
+}

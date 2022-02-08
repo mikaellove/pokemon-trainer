@@ -19,6 +19,7 @@ export class AllPokemonsService {
   ) {
     this.pokeData = getPokeData();
   }
+
   public resetService(): void {
     this.startIndex = 0;
     this.endIndex = this.startIndex + this.indexInterval;
@@ -91,5 +92,12 @@ export class AllPokemonsService {
       pokemon.id
     );
     this._pokemons.push(pokemon);
+  }
+
+  public isOnFirstPage(): boolean{
+    return this.startIndex === this.indexInterval
+  }
+  public isOnLastPage(): boolean{
+    return this.endIndex === this.pokeData?.results.length
   }
 }

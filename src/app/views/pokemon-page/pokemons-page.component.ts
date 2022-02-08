@@ -21,6 +21,13 @@ export class PokemonsPageComponent implements OnInit {
   get pokemons(): Pokemon[] {
     return this.allPokemonsService.everyPokemon();
   }
+  get isOnFirstPage(): boolean {
+    return this.allPokemonsService.isOnFirstPage();
+  }
+
+  get isOnLastPage(): boolean {
+    return this.allPokemonsService.isOnLastPage();
+  }
 
   public nextPage(): void {
     this.allPokemonsService.nextPage();
