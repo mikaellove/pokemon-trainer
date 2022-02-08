@@ -9,6 +9,7 @@ import { Pokemon } from 'src/app/models/pokemonData.model';
 export class PokemonCardComponent {
   @Input() pokemon: Pokemon | undefined;
   @Output() catchClicked: EventEmitter<Pokemon> = new EventEmitter();
+  
   onClickCatch() {
     this.catchClicked.emit(this.pokemon);
   }

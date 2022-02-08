@@ -21,7 +21,7 @@ export class AllPokemonsService {
   }
 
   /**
-   * Resets startIndex and endIndex and cals {@link onInit}
+   * Resets startIndex and endIndex and calls {@link onInit}
    */
   public resetService(): void {
     this.startIndex = 0;
@@ -59,7 +59,7 @@ export class AllPokemonsService {
     }
   }
   /**
-   * Sets the privous 50 pokemons
+   * Sets the previous 50 pokemons
    */
   public previousPage(): void {
     if (this.pokeData) {
