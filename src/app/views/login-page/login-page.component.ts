@@ -40,11 +40,15 @@ export class LoginPageComponent implements OnInit {
           if (data.length === 0) {
             this.httpService.AddUser(username, (addedUser: UserModel) => {
               setUser(addedUser);
+              console.log(getUser());
+              
               callBack();
             });
           }
           if (data.length === 1) {
             setUser(data[0]);
+            console.log(getUser());
+
             callBack();
           }
         },

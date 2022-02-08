@@ -9,18 +9,21 @@ import { HttpClientService } from './http-client.service';
 })
 export class TrainerCollectionService {
   constructor(private httpClientService: HttpClientService) {
-    this.init();
+    this.resetCollection()
   }
   private _trainerCollection: Pokemon[] = [];
 
-  private init() {
+  public resetCollection(): void {
+    this._trainerCollection = [];
+    this.init()
+  }
+  public init() {
     const userObject: UserModel = getUser();
     const pokeDataObject: Pokemons = getPokeData();
 
-    if (userObject.pokemon && (userObject.pokemon.length > 0)) {
+    if (userObject.pokemon && userObject.pokemon.length > 0) {
       const loadedPokemons: Pokemon[] = [];
-      console.log(userObject.pokemon);
-      
+
       for (const pokemon of userObject.pokemon) {
         const pokemonName = pokemon.name ? pokemon.name : pokemon.toString();
         const pokemonData = pokeDataObject.results.filter(

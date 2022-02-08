@@ -23,9 +23,10 @@ export class AllPokemonsService {
   public resetService(): void {
     this.startIndex = 0;
     this.endIndex = this.startIndex + this.indexInterval;
+    this.onInit()
   }
 
-  public onInit(): void {
+  private onInit(): void {
     if (this.pokeData !== null) {
       this._pokemons = [];
       while (this.startIndex < this.endIndex) {
